@@ -55,8 +55,23 @@ A Flet window should open displaying the light control UI. You can click the "To
 
 The application uses a public MQTT broker (broker.hivemq.com) by default, so you don't need to run your own for testing.
 
-## **How to Use FletMQTTClient in Your Own Project**
+## **Known Issue** ⚠️
+#### this error may occur in linux-based systems:
+```
+"error while loading shared libraries: libmpv.so.1: cannot open shared object file: No such file or directory"
+```
+#### error fix:
+```
+$ sudo apt-get install libmpv-dev mpv
+$ dpkg -S libmpv.so # record the path to libmpv.so or libmpv.so.2
+$ sudo ln -s <path>/libmpv.so <path>/libmpv.so.1 # create a symlink to the library
+```
+#### references:
+- [stackoverflow](https://stackoverflow.com/questions/78007193/error-while-loading-shared-libraries-libmpv-so-1-cannot-open-shared-object-fil)
+- [Flet Issue #2823](https://github.com/flet-dev/flet/issues/2823)
 
+## **How to Use FletMQTTClient in Your Own Project**
+****
 1. **Copy flet_mqtt_client.py** to your project directory.  
 2. **Import the client and config classes:**  
    from flet_mqtt_client import FletMQTTClient, MQTTConfig
